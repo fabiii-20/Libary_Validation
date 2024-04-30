@@ -67,7 +67,12 @@
                 <div class="form-group">
                     <label for="login-password">Password <span class="star">*</span></label>
                     <input type="password" class="form-control" id="login-password" placeholder="Password">
-                    <span class="error-message" id="login-password-error"></span>
+                    <div class="error-container">
+                        <span class="error-message" id="login-password-error"></span>
+                        <span class="error-message" id="login-password-digit"></span>
+                        <span class="error-message" id="login-password-upper"></span>
+                        <span class="error-message" id="login-password-lower"></span>
+                    </div>
                 </div>
                 <br>
                 <button type="submit" class="btn btn-primary w-100">Login</button>
