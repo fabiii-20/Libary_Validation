@@ -79,7 +79,7 @@
               placeholder="Enter email"
             />
             <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else.</small
+              >We'll never share your email with anyone else.<br/></small
             >
             <span class="error-message" id="signup-email-error"></span>
           </div>
@@ -133,7 +133,12 @@
               id="signup-password"
               placeholder="Password"
             />
-            <span class="error-message" id="signup-password-error"></span>
+            <div class="error-container">
+              <span class="error-message" id="signup-password-error"></span>
+              <span class="error-message" id="signup-password-digit"></span>
+              <span class="error-message" id="signup-password-upper"></span>
+              <span class="error-message" id="signup-password-lower"></span>
+            </div>
           </div>
           <br />
           <button type="submit" class="btn btn-primary w-100">Signup</button>
