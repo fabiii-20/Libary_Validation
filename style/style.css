@@ -1,0 +1,160 @@
+#logo{
+    height: 40px;
+    margin-left: 5px;
+}
+#logo-1{
+    height: 100px;
+    display: block;
+    margin: auto;   
+}
+.logo-hd{
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: lighter;
+    color: rgb(198, 198, 198);
+}
+#lgnm{
+    width: 200px;
+    display: block;
+    margin: auto;
+    padding: 5px;
+    background-color:rgb(249, 232, 235);
+}
+#navbarSupportedContent{
+    margin-right: 20px;
+}
+.carousel-item{
+    height: 300px;
+}
+.overlay{
+    border: 1px solid white;
+    background-color: white;
+    font-family:'Times New Roman', Times, serif;
+    color: rgb(116, 116, 116);
+    opacity: 0.8;
+    transition: opacity 0.5s ease;
+    border-radius: 5px;    
+}
+.overlay:hover {
+    opacity: 1;
+}
+.form-container {
+    max-width: 350px;
+    margin: auto;
+}
+
+.signup-body{
+    background-image: url(../images/bg-signup.jpg);
+    background-size: cover;
+}
+.form-container-s {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+.error-message {
+    color: red;
+}
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.animated-heading{
+    font-weight: bold;
+    color: gray;
+}
+.card-text{
+    font-family: 'Times New Roman', Times, serif;
+}
+.hover-text{
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
+}
+.hover-text:hover{
+    color: orangered;
+}
+.writer-name{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+.link-writer{
+    text-decoration: none;
+    color: palevioletred;
+}
+.wr-head{
+    color: palevioletred;
+}
+/* .arundhati{
+    height: 190px;
+   overflow: hidden;
+} */
+.line{
+    border: 3px solid rgb(211, 211, 55);
+    margin-left: 60px;
+    margin-right: 60px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+.topic{
+    background-color: beige;
+}
+.topic-heading{
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+.link-lib{
+    color: black;
+}
+.lib-head{
+    color: plum;
+    font-weight: bold;
+}
+.login-heading{
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+.star{
+    color: red;
+}
+#login-footer{
+    margin-bottom: 0;
+    padding: 40px;
+}
+.card{
+    border: 0;
+}
+.price-details {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.card:hover .price-details {
+    display: block;
+    opacity: 1;
+}
+.bi{
+    font-size: 32px;
+}
+.price{
+    font-weight: bold;
+    color: goldenrod;
+    font-size: 32px;
+    font-family:'Times New Roman', Times, serif;
+    margin-right: 70px;
+}
+.a-price{
+    text-decoration: none;
+}
+.heading-books{
+    font-family: 'Times New Roman', Times, serif;
+    text-align:center;
+}
+.line-1{
+    border: 3px solid black;
+}
