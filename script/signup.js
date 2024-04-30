@@ -1,3 +1,29 @@
+document.getElementById('signup-password').addEventListener('input', function() {
+    var signupPassword = this.value;
+    var lowercaseRegex = /[a-z]/;
+    var uppercaseRegex = /[A-Z]/;
+    var digitRegex = /\d/;
+
+    var passwordStrength = 0;
+    if (lowercaseRegex.test(signupPassword)) passwordStrength++;
+    if (uppercaseRegex.test(signupPassword)) passwordStrength++;
+    if (digitRegex.test(signupPassword)) passwordStrength++;
+
+    var strengthText = '';
+    var strengthColor = '';
+    if (signupPassword.length >= 12 && passwordStrength >= 3) {
+        strengthText = 'Strong password';
+        strengthColor = "green"; // Strong password
+    } else if (signupPassword.length >= 10 && passwordStrength >= 2) {
+        strengthText = 'Medium password';
+        strengthColor = "orange"; // Medium password
+    } else {
+        strengthText = 'Weak password';
+        strengthColor = "red"; // Weak password
+    }
+    document.getElementById('signup-password-error').innerHTML = 'Password strength: <span style="color: ' + strengthColor + '">' + strengthText + '</span>';
+});
+
 document.getElementById('signup-form').addEventListener('submit', function(eventSignup) {
     eventSignup.preventDefault();
     var name = document.getElementById('signup-name').value;
@@ -26,20 +52,32 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     if (signupPassword.length < 8) {
         document.getElementById('signup-password-error').innerText = 'Password must be at least 8 characters';
         validSignup = false;
-    } else if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}/.test(signupPassword)) {
-        document.getElementById('signup-password-error').innerText = 'Password must contain at least one uppercase letter, one lowercase letter, and one number';
-        validSignup = false;
     } else {
-        var passwordStrength = validatePassword(signupPassword);
+        var lowercaseRegex = /[a-z]/;
+        var uppercaseRegex = /[A-Z]/;
+        var digitRegex = /\d/;
+
+        var passwordStrength = 0;
+        if (lowercaseRegex.test(signupPassword)) passwordStrength++;
+        if (uppercaseRegex.test(signupPassword)) passwordStrength++;
+        if (digitRegex.test(signupPassword)) passwordStrength++;
+
+        var strengthText = '';
         var strengthColor = '';
-        if (passwordStrength === "green") {
+        if (signupPassword.length >= 12 && passwordStrength >= 3) {
+            strengthText = 'Strong password';
             strengthColor = "green"; // Strong password
-        } else if (passwordStrength === "orange") {
-            strengthColor = "orange"; // Medium password
+        } else if (signupPassword.length >= 10 && passwordStrength >= 2) {
+            strengthText = 'Medium password';
+            strengthColor = "orange"; // Mediu
         } else {
-            strengthColor = "red"; // Weak password
+            strengthText = 'Weak password';
+            strengthColor = "red"; 
         }
-        document.getElementById('signup-password-error').innerHTML = 'Password strength: <span style="color: ' + strengthColor + '">' + passwordStrength.toUpperCase() + '</span>';
+        document.getElementById('signup-password-error').innerHTML = ' <span style="color: ' + strengthColor + '">' + strengthText + '</span>';
+        if (strengthColor === "red") {
+            validSignup = false;
+        }
     }
 
     if (dob === '') {
@@ -64,8 +102,9 @@ document.getElementById('signup-form').addEventListener('submit', function(event
     }
 
     if (validSignup) {
+        
         alert('Signup Successful');
-
+       
         document.getElementById('signup-form').reset();
     }
 });
