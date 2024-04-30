@@ -8,20 +8,36 @@ document.getElementById('signup-password').addEventListener('input', function() 
     if (lowercaseRegex.test(signupPassword)) passwordStrength++;
     if (uppercaseRegex.test(signupPassword)) passwordStrength++;
     if (digitRegex.test(signupPassword)) passwordStrength++;
-
+    var hasLowerCase = /[a-z]/.test(signupPassword);
+    var hasUpperCase = /[A-Z]/.test(signupPassword);
+    var hasNumbers = /\d/.test(signupPassword);
+    if(signupPassword.length < 8) {
+        passwordStrength=1
+    }
+    if(signupPassword.length >=8 && (!hasLowerCase || !hasUpperCase || !hasNumbers)) {
+        passwordStrength =2
+    }
+    if(hasLowerCase && hasUpperCase && hasNumbers && signupPassword.length >= 8) {
+        passwordStrength = 3;
+    }
+    
     var strengthText = '';
     var strengthColor = '';
-    if (signupPassword.length >= 12 && passwordStrength >= 3) {
-        strengthText = 'Strong password';
+    if ( passwordStrength == 3) {
+        strengthText = '✓ Password strength : Strong';
         strengthColor = "green"; // Strong password
-    } else if (signupPassword.length >= 10 && passwordStrength >= 2) {
-        strengthText = 'Medium password';
+    } else if ( passwordStrength == 2) {
+        strengthText = '✓ Password strength : Medium';
         strengthColor = "orange"; // Medium password
     } else {
-        strengthText = 'Weak password';
+        strengthText = '✗ Password strength : Weak';
         strengthColor = "red"; // Weak password
     }
-    document.getElementById('signup-password-error').innerHTML = 'Password strength: <span style="color: ' + strengthColor + '">' + strengthText + '</span>';
+    document.getElementById('signup-password-error').innerHTML = ' <span style="color: ' + strengthColor + '">' + strengthText + '</span>';
+    document.getElementById('signup-password-digit').innerHTML = `<span style="color: ${hasNumbers ? 'green' : 'red'}">${hasNumbers ? '✓' : '✗'} Should contain atleast one digit </span>`;
+    document.getElementById('signup-password-lower').innerHTML = `<span style="color: ${hasLowerCase ? 'green' : 'red'}">${hasLowerCase ? '✓' : '✗'} Should contain atleast one lowercase letter </span>`;
+    document.getElementById('signup-password-upper').innerHTML = `<span style="color: ${hasUpperCase ? 'green' : 'red'}">${hasUpperCase ? '✓' : '✗'} Should contain atleast one uppercase letter </span>`;
+
 });
 
 document.getElementById('signup-form').addEventListener('submit', function(eventSignup) {
@@ -58,24 +74,12 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         var digitRegex = /\d/;
 
         var passwordStrength = 0;
-        if (lowercaseRegex.test(signupPassword)) passwordStrength++;
-        if (uppercaseRegex.test(signupPassword)) passwordStrength++;
-        if (digitRegex.test(signupPassword)) passwordStrength++;
-
-        var strengthText = '';
-        var strengthColor = '';
-        if (signupPassword.length >= 12 && passwordStrength >= 3) {
-            strengthText = 'Strong password';
-            strengthColor = "green"; // Strong password
-        } else if (signupPassword.length >= 10 && passwordStrength >= 2) {
-            strengthText = 'Medium password';
-            strengthColor = "orange"; // Mediu
-        } else {
-            strengthText = 'Weak password';
-            strengthColor = "red"; 
-        }
-        document.getElementById('signup-password-error').innerHTML = ' <span style="color: ' + strengthColor + '">' + strengthText + '</span>';
-        if (strengthColor === "red") {
+        
+        var hasLowerCase = /[a-z]/.test(signupPassword);
+        var hasUpperCase = /[A-Z]/.test(signupPassword);
+        var hasNumbers = /\d/.test(signupPassword);
+        var isPasswordValid = hasLowerCase && hasUpperCase && hasNumbers && signupPassword.length >= 8;
+        if(!isPasswordValid) {
             validSignup = false;
         }
     }
@@ -108,3 +112,13 @@ document.getElementById('signup-form').addEventListener('submit', function(event
         document.getElementById('signup-form').reset();
     }
 });
+
+document.getElementById('signup-email').addEventListener('input', function() {
+    var signupEmail = this.value;
+    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    if (!emailRegex.test(signupEmail)) {
+        document.getElementById('signup-email-error').innerText = 'Please enter a valid email';
+    } else {
+        document.getElementById('signup-email-error').innerText = '';
+    }
+})
